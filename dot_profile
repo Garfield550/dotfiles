@@ -1,0 +1,38 @@
+# if running bash, include .bashrc if it exists
+if [ -n "$BASH_VERSION" ]; then
+    if [ -f "$HOME/.bashrc" ]; then
+        . "$HOME/.bashrc"
+    fi
+fi
+
+# set PATH if it exists
+if [ -d "$HOME/bin" ]; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+if [ -d "$HOME/.local/bin" ]; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+if [ -d "$HOME/.local/share/fnm" ]; then
+    PATH="$HOME/.local/share/fnm:$PATH"
+fi
+
+if [ -d "$HOME/.deno" ]; then
+    export DENO_INSTALL="$HOME/.deno"
+    PATH="$DENO_INSTALL/bin:$PATH"
+fi
+
+if [ -d "$HOME/.dotnet/tools" ]; then
+    PATH="$HOME/.dotnet/tools:$PATH"
+fi
+
+# macOS specific
+if [ -d "$HOME/Library/Application Support/JetBrains/Toolbox/scripts" ]; then
+    PATH="$HOME/Library/Application Support/JetBrains/Toolbox/scripts:$PATH"
+fi
+
+# Cargo setup
+if [ -f "$HOME/.cargo/env" ]; then
+    . "$HOME/.cargo/env"
+fi

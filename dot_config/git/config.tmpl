@@ -1,0 +1,19 @@
+[gpg]
+	program = gpg
+[init]
+	defaultBranch = main
+[pull]
+	rebase = true
+[credential]
+{{- if eq .chezmoi.os "darwin" }}
+	helper = osxkeychain
+{{ else if eq .chezmoi.os "linux" }}
+	helper = manager
+	credentialStore = gpg
+{{ else if eq .chezmoi.os "windows" }}
+	helper = manager
+{{ end -}}
+[credential "https://github.com"]
+	useHttpPath = true
+[credential "https://dev.azure.com"]
+	useHttpPath = true

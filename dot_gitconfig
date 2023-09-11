@@ -1,0 +1,6 @@
+[user]
+	name = Garfield Lee
+	email = Garfield550@users.noreply.github.com
+	signingkey = EF60F5438ADC14D0!
+[commit]
+	gpgsign = true
