@@ -1,0 +1,18 @@
+[font]
+size = 13.0
+
+[window]
+decorations = "buttonless"
+dynamic_padding = true
+
+[window.dimensions]
+columns = 240
+lines = 40
+
+[window.padding]
+x = 15
+y = 15
+
+[window.position]
+x = 0
+y = 0
