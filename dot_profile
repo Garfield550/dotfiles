@@ -1,38 +1,109 @@
-# if running bash, include .bashrc if it exists
-if [ -n "$BASH_VERSION" ]; then
-    if [ -f "$HOME/.bashrc" ]; then
-        . "$HOME/.bashrc"
+is_file() {
+    if test -f "$1" ; then
+        return 0 ; # true
+    else
+        return 1 ; # false
     fi
-fi
+}
+
+is_directory() {
+    if test -d "$1" ; then
+        return 0 ; # true
+    else
+        return 1 ; # false
+    fi
+}
+
+is_empty_directory() {
+    if test -z "$(ls -A "$1")" ; then
+        return 0 ; # true
+    else
+        return 1 ; # false
+    fi
+}
+
+perpend_to_path() {
+    if is_directory "$1" ; then
+        PATH="$1"":""$PATH" ;
+    fi
+}
+
+# Source profile scripts
+source_profile_scripts() {
+    user_profiles="$HOME""/profile.d"
+
+    if is_directory "$user_profiles" ; then
+        if ! is_empty_directory "$user_profiles" ; then
+            for script in "$user_profiles"/* ; do
+                . "$script" ;
+            done
+        fi
+    fi
+
+    unset user_profiles script
+}
+
+# if running bash, include .bashrc if it exists
+include_bashrc() {
+    bashrc="$HOME""/.bashrc"
+
+    if test -n "$BASH_VERSION" && is_file "$bashrc" ; then
+        . "$bashrc" ;
+    fi
+
+    unset bashrc
+}
 
 # set PATH if it exists
-if [ -d "$HOME/bin" ]; then
-    PATH="$HOME/bin:$PATH"
-fi
+set_path() {
+    # define paths
+    user_bin="$HOME""/bin"
+    user_local_bin="$HOME""/.local/bin"
+    fnm_bin="$HOME""/.local/share/fnm"
+    dotnet_tools_bin="$HOME""/.dotnet/tools"
+    jetbrains_toolbox_bin="$HOME""/Library/Application Support/JetBrains/Toolbox/scripts"
 
-if [ -d "$HOME/.local/bin" ]; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
+    set -- "$user_bin" "$user_local_bin" "$fnm_bin" "$dotnet_tools_bin" "$jetbrains_toolbox_bin"
 
-if [ -d "$HOME/.local/share/fnm" ]; then
-    PATH="$HOME/.local/share/fnm:$PATH"
-fi
+    # prepend paths
+    for path in "$@" ; do
+        perpend_to_path "$path" ;
+    done
 
-if [ -d "$HOME/.deno" ]; then
-    export DENO_INSTALL="$HOME/.deno"
-    PATH="$DENO_INSTALL/bin:$PATH"
-fi
+    set --
 
-if [ -d "$HOME/.dotnet/tools" ]; then
-    PATH="$HOME/.dotnet/tools:$PATH"
-fi
-
-# macOS specific
-if [ -d "$HOME/Library/Application Support/JetBrains/Toolbox/scripts" ]; then
-    PATH="$HOME/Library/Application Support/JetBrains/Toolbox/scripts:$PATH"
-fi
+    # unset variables
+    unset path user_bin user_local_bin fnm_bin dotnet_tools_bin jetbrains_toolbox_bin
+}
 
 # Cargo setup
-if [ -f "$HOME/.cargo/env" ]; then
-    . "$HOME/.cargo/env"
-fi
+setup_cargo() {
+    cargo_env="$HOME""/.cargo/env"
+
+    if is_file "$cargo_env" ; then
+        . "$cargo_env" ;
+    fi
+
+    unset cargo_env
+}
+
+# Deno setup
+setup_deno() {
+    deno_path="$HOME""/.deno"
+
+    if is_directory "$deno_path" ; then
+        export DENO_INSTALL="$deno_path" ;
+        perpend_to_path "$DENO_INSTALL""/bin" ;
+    fi
+
+    unset deno_path
+}
+
+source_profile_scripts
+include_bashrc
+set_path
+
+setup_cargo
+setup_deno
+
+unset -f is_file is_directory is_empty_directory perpend_to_path source_profile_scripts include_bashrc set_path setup_cargo setup_deno
