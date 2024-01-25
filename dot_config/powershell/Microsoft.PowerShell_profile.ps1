@@ -34,4 +34,4 @@ if (CommandExists 'fnm') { Invoke-Expression (&fnm env --use-on-cd | Out-String)
 if (CommandExists 'rustup') { Invoke-Expression (&rustup completions powershell | Out-String) }
 
 # VSCode shell integration
-if ($env:TERM_PROGRAM -eq "vscode") { . "$(code --locate-shell-integration-path pwsh)" }
+# if ($env:TERM_PROGRAM -eq "vscode") { . "$(code --locate-shell-integration-path pwsh)" }
