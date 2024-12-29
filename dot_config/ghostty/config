@@ -1,0 +1,15 @@
+theme = Grass
+
+title = " "
+
+window-padding-x = 15
+window-padding-y = 6
+window-decoration = true
+window-height = 30
+window-width = 9999
+window-save-state = always
+
+quick-terminal-position = top
+quick-terminal-autohide = false
+
+macos-titlebar-style = tabs
