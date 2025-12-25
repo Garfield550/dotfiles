@@ -33,5 +33,9 @@ if (CommandExists 'fnm') { Invoke-Expression (&fnm env --use-on-cd | Out-String)
 # Shell completions
 if (CommandExists 'rustup') { Invoke-Expression (&rustup completions powershell | Out-String) }
 
+if (CommandExists 'uv') { Invoke-Expression (&uv generate-shell-completion powershell | Out-String) }
+if (CommandExists 'uvx') { Invoke-Expression (&uvx --generate-shell-completion powershell  | Out-String) }
+
+
 # VSCode shell integration
 # if ($env:TERM_PROGRAM -eq "vscode") { . "$(code --locate-shell-integration-path pwsh)" }

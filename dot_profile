@@ -107,3 +107,5 @@ setup_cargo
 setup_deno
 
 unset -f is_file is_directory is_empty_directory perpend_to_path source_profile_scripts include_bashrc set_path setup_cargo setup_deno
+
+export PROFILESOURCED=1
