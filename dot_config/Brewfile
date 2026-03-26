@@ -1,0 +1,75 @@
+tap "anomalyco/tap"
+tap "powershell/tap"
+tap "tw93/tap"
+# Manage your dotfiles across multiple diverse machines, securely
+brew "chezmoi"
+# Fast and simple Node.js version manager
+brew "fnm"
+# GitHub command-line tool
+brew "gh"
+# Distributed revision control system
+brew "git"
+# GNU Privacy Guard (OpenPGP)
+brew "gnupg"
+# Improved top (interactive process viewer)
+brew "htop"
+# Create, run, and share large language models (LLMs)
+brew "ollama"
+# Command-line shell and scripting language
+brew "powershell"
+# Cross-shell prompt for astronauts
+brew "starship"
+# Formatting tool for reformatting Swift code
+brew "swiftformat"
+# Tool to enforce Swift style and conventions
+brew "swiftlint"
+# The AI coding agent built for the terminal.
+brew "anomalyco/tap/opencode"
+# Comprehensive macOS cleanup and application uninstall tool
+brew "tw93/tap/mole"
+# Collection of apps and services for photography, design, video, web, and UX
+cask "adobe-creative-cloud"
+# Virtual Audio Driver
+cask "blackhole-2ch"
+# Virtual modular synthesiser plugin
+cask "cardinal"
+# OpenAI's coding agent that runs in your terminal
+cask "codex"
+# Collaborative team software
+cask "figma"
+# Web browser
+cask "firefox"
+# Terminal emulator that uses platform-native UI and GPU acceleration
+cask "ghostty"
+# Web browser
+cask "google-chrome"
+# Free and open-source media player
+cask "iina"
+# Project management software
+cask "lark"
+# Multi-platform web browser
+cask "microsoft-edge"
+# Tool that provides consistent, highly configurable symbols for apps
+cask "sf-symbols"
+# System monitor for the menu bar
+cask "stats"
+# Hybrid synthesiser
+cask "surge-xt"
+# Desktop client for Telegram messenger
+cask "telegram-desktop"
+# Open-source virtual modular synthesiser
+cask "vcv-rack"
+# Open-source code editor
+cask "visual-studio-code"
+vscode "editorconfig.editorconfig"
+vscode "github.codespaces"
+vscode "github.copilot-chat"
+vscode "gruntfuggly.todo-tree"
+vscode "humao.rest-client"
+vscode "ms-vscode-remote.remote-ssh"
+vscode "ms-vscode-remote.remote-ssh-edit"
+vscode "ms-vscode.remote-explorer"
+vscode "ms-vsliveshare.vsliveshare"
+vscode "oderwat.indent-rainbow"
+vscode "streetsidesoftware.code-spell-checker"
+vscode "vscode-icons-team.vscode-icons"
