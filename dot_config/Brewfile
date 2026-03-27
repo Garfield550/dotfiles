@@ -1,5 +1,4 @@
 tap "anomalyco/tap"
-tap "powershell/tap"
 tap "tw93/tap"
 # Manage your dotfiles across multiple diverse machines, securely
 brew "chezmoi"
